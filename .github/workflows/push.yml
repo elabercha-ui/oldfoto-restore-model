@@ -11,21 +11,19 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
-          - name: Install Cog
-      run: |
-        curl -L https://storage.googleapis.com/replicate-cog/latest/cog-linux -o cog
-        chmod +x cog
-        sudo mv cog /usr/local/bin/cog
+      - name: Install Cog
+        run: |
+          curl -L https://storage.googleapis.com/replicate-cog/latest/cog-linux -o cog
+          chmod +x cog
+          sudo mv cog /usr/local/bin/cog
 
-    - name: Login to Replicate
-      run: |
-        export COG_LOGIN_TOKEN="${{ secrets.REPLICATE_API_TOKEN }}"
-
-    - name: Push model
-      run: |
-        cog push r8.im/elabercha-ui/oldfoto-restore
-
+      - name: Login to Replicate
+        env:
+          COG_LOGIN_TOKEN: ${{ secrets.REPLICATE_API_TOKEN }}
+        run: |
+          echo "$COG_LOGIN_TOKEN" | cog login --token-stdin
 
       - name: Push model
         run: |
           cog push r8.im/elabercha-ui/oldfoto-restore
+
