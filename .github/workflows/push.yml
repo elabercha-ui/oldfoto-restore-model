@@ -1,0 +1,23 @@
+name: Push to Replicate
+
+on:
+  workflow_dispatch:
+
+jobs:
+  push:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Install Cog
+        run: |
+          curl -O https://storage.googleapis.com/replicate-cog/latest/cog-linux
+          chmod +x cog-linux
+          sudo mv cog-linux /usr/local/bin/cog
+
+      - name: Login to Replicate
+        run: cog login --token ${{ secrets.REPLICATE_API_TOKEN }}
+
+      - name: Push model
+        run: cog push r8.im/elabercha-ui/oldfoto-restore
