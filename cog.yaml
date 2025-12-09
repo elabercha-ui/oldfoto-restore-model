@@ -1,0 +1,18 @@
+# Версия Cog
+version: "0.1"
+
+# Имя модели, можно оставить так
+build:
+  python_version: "3.10"
+  system_packages:
+    - libgl1
+    - libglib2.0-0
+  python_packages:
+    - pillow
+    - numpy
+    - opencv-python
+    - torch
+    - torchvision
+
+# Где лежит файл предсказания
+predict: "predict.py:Predictor"
