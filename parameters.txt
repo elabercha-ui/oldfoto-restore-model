@@ -1,0 +1,31 @@
+SLIDERS (numeric inputs)
+
+• face_resemblance: 0–1  
+  Controls how closely the restored face matches the original.
+
+• detail_resemblance: 0–1  
+  Controls how close the texture/details remain to the original.
+
+• face_deformity: 0–1  
+  Reduces unnatural distortions in the face.
+
+• detail_deformity: 0–1  
+  Reduces unnatural distortions in textures and small details.
+
+• smoothness: 0–100  
+  Smoothing strength (higher = softer skin and background).
+
+• noise_level: 0–1  
+  Noise reduction strength.
+
+• flux_impact: 0–1  
+  Weight of FLUX-based enhancement.
+
+• upscale_level: 2–8  
+  Upscale multiplier.
+
+• color_levels: 0–1  
+  Adjusts tonal correction strength.
+
+• blur_levels: 0–1  
+  Blur reduction or sharpening balance.
