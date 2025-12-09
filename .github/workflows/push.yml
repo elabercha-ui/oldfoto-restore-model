@@ -1,7 +1,7 @@
 name: Push to Replicate
 
 on:
-  workflow_dispatch:
+  workflow_dispatch: {}
 
 jobs:
   push:
@@ -11,19 +11,11 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: Install Cog
-        run: |
-          curl -L https://storage.googleapis.com/replicate-cog/latest/cog-linux -o cog
-          chmod +x cog
-          sudo mv cog /usr/local/bin/cog
+      - name: Setup Cog
+        uses: replicate/setup-cog@v2
+        with:
+          token: ${{ secrets.REPLICATE_CLI_AUTH_TOKEN }}
 
-      - name: Login to Replicate
-        env:
-          COG_LOGIN_TOKEN: ${{ secrets.REPLICATE_API_TOKEN }}
-        run: |
-          echo "$COG_LOGIN_TOKEN" | cog login --token-stdin
-
-      - name: Push model
-        run: |
-          cog push r8.im/elabercha-ui/oldfoto-restore
+      - name: Push to Replicate
+        run: cog push r8.im/elabercha-ui/oldfoto-restore-model
 
